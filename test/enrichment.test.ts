@@ -10,6 +10,10 @@ describe("trimContent", () => {
 		expect(trimContent("visible<script>hidden</script >after")).toBe("visibleafter");
 	});
 
+	it("handles browser-accepted script end tags with attributes", () => {
+		expect(trimContent("visible<script>hidden</script foo='bar'>after")).toBe("visibleafter");
+	});
+
 	it("repeats block removal when nested markup recreates a script tag", () => {
 		expect(trimContent("<scrip<script>t>is removed</script>t>alert(123)</script>")).toBe("");
 	});

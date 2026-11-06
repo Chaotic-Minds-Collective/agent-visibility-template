@@ -27,9 +27,9 @@ function removeRepeatedly(input: string, pattern: RegExp): string {
 
 export function trimContent(input: string): string {
 	let s = input.slice(0, MAX_INPUT_BYTES);
-	s = removeRepeatedly(s, /<script\b[\s\S]*?<\/script\s*>/gi);
-	s = removeRepeatedly(s, /<style\b[\s\S]*?<\/style\s*>/gi);
-	s = removeRepeatedly(s, /<svg\b[\s\S]*?<\/svg\s*>/gi);
+	s = removeRepeatedly(s, /<script\b[\s\S]*?<\/script\b[^>]*>/gi);
+	s = removeRepeatedly(s, /<style\b[\s\S]*?<\/style\b[^>]*>/gi);
+	s = removeRepeatedly(s, /<svg\b[\s\S]*?<\/svg\b[^>]*>/gi);
 	s = removeRepeatedly(s, /<!--[\s\S]*?-->/g);
 	// Remove malformed or partially recreated block openings conservatively.
 	s = s.replace(/<script\b[\s\S]*$/gi, "");
