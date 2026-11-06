@@ -10,7 +10,11 @@ describe("trimContent", () => {
 		expect(trimContent("visible<script>hidden</script >after")).toBe("visibleafter");
 	});
 
-	it("repeats block removal when nested markup recreates a dangerous tag", () => {
-		expect(trimContent("<scr<script>ipt>alert(1)</scr</script>ipt>visible")).not.toMatch(/<script\b/i);
+	it("repeats block removal when nested markup recreates a script tag", () => {
+		expect(trimContent("<scrip<script>t>is removed</script>t>alert(123)</script>")).toBe("");
+	});
+
+	it("drops the remainder after a malformed nested script opening", () => {
+		expect(trimContent("<scr<script>ipt>alert(1)</scr</script>ipt>visible")).toBe("");
 	});
 });

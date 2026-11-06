@@ -31,6 +31,11 @@ export function trimContent(input: string): string {
 	s = removeRepeatedly(s, /<style\b[\s\S]*?<\/style\s*>/gi);
 	s = removeRepeatedly(s, /<svg\b[\s\S]*?<\/svg\s*>/gi);
 	s = removeRepeatedly(s, /<!--[\s\S]*?-->/g);
+	// Remove malformed or partially recreated block openings conservatively.
+	s = s.replace(/<script\b[\s\S]*$/gi, "");
+	s = s.replace(/<style\b[\s\S]*$/gi, "");
+	s = s.replace(/<svg\b[\s\S]*$/gi, "");
+	s = s.replace(/<!--[\s\S]*$/g, "");
 	s = s.replace(/<[^>]+>/g, " "); // drop remaining tags but keep text
 	s = s.replace(/\s+/g, " ").trim();
 	return s;
