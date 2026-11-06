@@ -14,15 +14,25 @@ const MAX_INPUT_BYTES = 60_000;
  * Trim source content to a model-feedable window. Strips script/style/svg and
  * HTML comments, collapses whitespace, and truncates as a last resort.
  */
-export function trimContent(input: string): string {
+function removeRepeatedly(input: string, pattern: RegExp): string {
 	let s = input;
-	s = s.replace(/<script[\s\S]*?<\/script>/gi, "");
-	s = s.replace(/<style[\s\S]*?<\/style>/gi, "");
-	s = s.replace(/<svg[\s\S]*?<\/svg>/gi, "");
-	s = s.replace(/<!--[\s\S]*?-->/g, "");
+	for (let i = 0; i < 8; i++) {
+		const next = s.replace(pattern, "");
+		if (next === s) return s;
+		s = next;
+	}
+	pattern.lastIndex = 0;
+	return pattern.test(s) ? "" : s;
+}
+
+export function trimContent(input: string): string {
+	let s = input.slice(0, MAX_INPUT_BYTES);
+	s = removeRepeatedly(s, /<script\b[\s\S]*?<\/script\s*>/gi);
+	s = removeRepeatedly(s, /<style\b[\s\S]*?<\/style\s*>/gi);
+	s = removeRepeatedly(s, /<svg\b[\s\S]*?<\/svg\s*>/gi);
+	s = removeRepeatedly(s, /<!--[\s\S]*?-->/g);
 	s = s.replace(/<[^>]+>/g, " "); // drop remaining tags but keep text
 	s = s.replace(/\s+/g, " ").trim();
-	if (s.length > MAX_INPUT_BYTES) s = s.slice(0, MAX_INPUT_BYTES);
 	return s;
 }
 
