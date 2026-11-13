@@ -1,6 +1,7 @@
-# Chaotic Minds Collective — AI Agent Visibility Template
+# CMC Agent Visibility Template
 
-A Chaotic Minds Collective (CMC) maintained template for making documentation and site content discoverable to AI agents. The original Cloudflare template attribution and deployment guidance below are preserved.
+Maintained within **Chaotic Minds Collective (CMC)**. This repository retains the Cloudflare Workers template attribution and upstream setup references below.
+
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/agent-visibility-template)
 
