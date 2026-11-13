@@ -39,5 +39,24 @@
 		"ENRICHMENT_CACHE_TTL": "3600",
 		"CONTENT_SIGNAL": "ai-input=yes, search=yes, ai-train=no",
 		"ENABLE_WEB_BOT_AUTH": "false"
+	},
+	"previews": {
+		"ai": {
+			"binding": "AI"
+		},
+		"kv_namespaces": [
+			{
+				"binding": "VISIBILITY_CACHE",
+				"id": "ad8be6a2cde546cc991849823cea4876"
+			}
+		],
+		"vars": {
+			"SITE_NAME": "Acme Docs",
+			"SITE_DESCRIPTION": "Product documentation for the Chaotic Minds Collective platform.",
+			"AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+			"ENRICHMENT_CACHE_TTL": "3600",
+			"CONTENT_SIGNAL": "ai-input=yes, search=yes, ai-train=no",
+			"ENABLE_WEB_BOT_AUTH": "false"
+		}
 	}
 }
