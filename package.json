@@ -1,8 +1,8 @@
 {
-  "name": "agent-visibility-template",
+  "name": "cmc-agent-visibility-template",
   "description": "Make your content visible to AI agents across every discovery surface — llms.txt, a typed JSON index, per-page Markdown, robots.txt, Content-Signal headers, and JSON-LD — all generated from one store by Workers AI.",
   "cloudflare": {
-    "label": "AI Agent Visibility",
+    "label": "CMC Agent Visibility Template",
     "products": [
       "Workers",
       "Workers AI",
